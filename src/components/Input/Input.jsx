@@ -9,7 +9,7 @@ import "./Input.css";
 import { FormContext } from "../providers/FormContext";
 import { use } from "react";
 
-function Input({ type, id, label }, ref) {
+function Input({ type, id, label, checkOnBlur, placeholder }, ref) {
   const { formInput, setFormInput } = useContext(FormContext);
   const [text, setText] = useState("");
   const [isValid, setIsValid] = useState(true);
@@ -44,6 +44,8 @@ function Input({ type, id, label }, ref) {
         type={type}
         id={id}
         value={text}
+        placeholder={placeholder ? placeholder : ""}
+        onBlur={checkOnBlur}
         onChange={(e) => {
           setText(e.target.value);
           setFormInput({ ...formInput, [label]: e.target.value });
